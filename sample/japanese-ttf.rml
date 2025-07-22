@@ -1,0 +1,25 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_01.pdf">
+	<docinit>
+		<registerFont
+			fontName="NotoSansCJKjp"
+			fontFile="files/NotoSansJP-Regular.ttf"
+		/>
+	</docinit>
+  <template>
+    <!--this section contains elements of the document -->
+    <!--which are FIXED into position. -->
+    <pageTemplate id="main">
+      <frame id="first" x1="100" y1="400" width="150" height="200" />
+    </pageTemplate>
+  </template>
+  <stylesheet>
+	<paraStyle name="jtext"
+						 fontName="NotoSansCJKjp"
+						 fontSize="12"/>
+  </stylesheet>
+  <story>
+    <para style="jtext">これは日本語のテキストです。</para>
+  </story>
+</document>
+<!-- vim: set filetype=xml : -->

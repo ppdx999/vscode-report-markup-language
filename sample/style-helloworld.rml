@@ -1,0 +1,26 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_04.pdf">
+  <template>
+    <pageTemplate id="main">
+      <pageGraphics>
+        <fill color="red" />
+        <setFont name="Times-Roman" size="24" />
+        <drawString x="100" y="700">Different types of Text Styling</drawString>
+      </pageGraphics>
+      <frame id="first" x1="100" y1="400" width="150" height="200" />
+      <frame id="second" x1="300" y1="400" width="150" height="200" />
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <paraStyle name="textstyle1" fontName="Helvetica" fontSize="9" leading="10" />
+  </stylesheet>
+  <story>
+    <para>Welcome to RML. This paragraph has not been styled.</para>
+    <para style="textstyle1">This paragraph HAS been styled, using a style defined in the &lt;stylesheet&gt; section.</para>
+    <para style="textstyle1" fontSize="12">This paragraph uses the same style as the first paragraph, but the fontsize has been overridden. paraStyles can inherit from each other. You can also use html-style 
+    <b>bold</b>and 
+    <i>italic</i>tags.</para>
+    <para textColor="blue">This paragraph has been styled, but not using the stylesheet. It just uses style attributes inside it's own &lt;para&gt; tag.</para>
+  </story>
+</document>
+<!-- vim: set filetype=xml : -->

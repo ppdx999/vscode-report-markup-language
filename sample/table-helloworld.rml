@@ -1,0 +1,36 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_07.pdf">
+  <template showBoundary="1">
+    <pageTemplate id="main">
+      <pageGraphics>
+        <place x="300" y="500" width="250" height="250">
+          <blockTable>
+            <tr>
+              <td>A block</td>
+              <td>table</td>
+            </tr>
+            <tr>
+              <td>inside</td>
+              <td>a place tag.</td>
+            </tr>
+          </blockTable>
+        </place>
+      </pageGraphics>
+      <frame id="first" x1="100" y1="400" width="150" height="200" />
+    </pageTemplate>
+  </template>
+  <stylesheet></stylesheet>
+  <story>
+    <blockTable>
+      <tr>
+        <td>A block</td>
+        <td>table</td>
+      </tr>
+      <tr>
+        <td>inside</td>
+        <td>the story tag. This is a long string of text which won't wrap by default.</td>
+      </tr>
+    </blockTable>
+  </story>
+</document>
+<!-- vim: set filetype=xml : -->

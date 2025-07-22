@@ -1,0 +1,28 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_05.pdf">
+  <template showBoundary="1">
+    <pageTemplate id="main">
+      <pageGraphics>
+        <image file="files/earth.gif" x="300" y="700" />
+        <fill color="red" />
+        <setFont name="Times-Roman" size="24" />
+        <drawString x="100" y="700">Hello!</drawString>
+      </pageGraphics>
+      <frame id="first" x1="100" y1="400" width="150" height="200" />
+      <frame id="second" x1="300" y1="400" width="150" height="200" />
+    </pageTemplate>
+  </template>
+  <stylesheet></stylesheet>
+  <story>
+    <para>This is a paragraph above an illustration.</para>
+    <!-- The <illustration> tag below defines a box (with a border turned -->
+    <!-- on, for visibility) inside which an image is placed. -->
+    <illustration width="50" height="100" borderStrokeWidth="1" borderStrokeColor="black">
+      <!-- x and y coordinates are from the bottom left corner -->
+      <!-- of the containing illustration -->
+      <!-- <image file="files/earth.gif" x="10" y="10"/> -->
+    </illustration>
+    <para>This paragraph is below the illustration. Note that if you change the height and width of the illustration, the text in the first paragraph may become hidden by the graphic image, which overflows the borders of the illustration in which it is contained.</para>
+  </story>
+</document>
+<!-- vim: set filetype=xml : -->
