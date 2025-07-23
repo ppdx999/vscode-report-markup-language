@@ -41,7 +41,45 @@
         "scopeName": "source.rml",
         "path": "./syntaxes/rml.tmLanguage.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "rml.exportToPdf",
+        "title": "Export to PDF",
+        "category": "RML"
+      },
+      {
+        "command": "rml.previewPdf",
+        "title": "Preview as PDF",
+        "category": "RML"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "rml.previewPdf",
+          "when": "resourceExtname == .rml",
+          "group": "navigation@1"
+        },
+        {
+          "command": "rml.exportToPdf",
+          "when": "resourceExtname == .rml",
+          "group": "navigation@2"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "rml.previewPdf",
+          "when": "resourceExtname == .rml",
+          "group": "navigation@1"
+        },
+        {
+          "command": "rml.exportToPdf",
+          "when": "resourceExtname == .rml",
+          "group": "navigation@2"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
