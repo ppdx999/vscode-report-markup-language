@@ -8,6 +8,38 @@ import sys
 import os
 from trml2pdf import parseString
 
+def register_cid_fonts():
+    """Register common CID fonts for Japanese text support"""
+    try:
+        from reportlab.pdfbase import pdfmetrics
+        from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+        
+        # Common Japanese CID fonts
+        japanese_fonts = [
+            'HeiseiMin-W3',      # Mincho (serif)
+            'HeiseiKakuGo-W5',   # Gothic (sans-serif)
+            'STSong-Light',      # Chinese simplified
+            'MSung-Light',       # Chinese traditional
+            'HYGoThic-Medium',   # Korean
+        ]
+        
+        registered_fonts = []
+        for font_name in japanese_fonts:
+            try:
+                pdfmetrics.registerFont(UnicodeCIDFont(font_name))
+                registered_fonts.append(font_name)
+            except Exception:
+                # Font not available on this system, continue
+                pass
+        
+        if registered_fonts:
+            print(f"Registered CID fonts: {', '.join(registered_fonts)}")
+        else:
+            print("Warning: No CID fonts could be registered")
+            
+    except ImportError:
+        print("Warning: Could not import CID font support")
+
 def readContent(file_path):
     """Read content from RML file"""
     try:
@@ -34,6 +66,9 @@ def main():
         sys.exit(1)
     
     try:
+        # Register CID fonts for Japanese/CJK text support
+        register_cid_fonts()
+        
         # Convert RML to PDF using the provided logic
         pdf_data = parseString(readContent(input_file))
         
