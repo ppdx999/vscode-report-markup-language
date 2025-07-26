@@ -4,60 +4,282 @@
   "fileTypes": ["rml"],
   "patterns": [
     {
+      "include": "#xml-declaration"
+    },
+    {
+      "include": "#doctype"
+    },
+    {
       "include": "#comments"
     },
     {
-      "include": "#keywords"
+      "include": "#tags"
     },
     {
-      "include": "#strings"
-    },
-    {
-      "include": "#numbers"
+      "include": "#entity-references"
     }
   ],
   "repository": {
-    "comments": {
-      "patterns": [
-        {
-          "name": "comment.line.double-slash.rml",
-          "match": "//.*$"
+    "xml-declaration": {
+      "name": "meta.tag.preprocessor.xml.rml",
+      "begin": "(<\\?)\\s*(xml)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.xml.rml"
         },
-        {
-          "name": "comment.block.rml",
-          "begin": "/\\*",
-          "end": "\\*/"
+        "2": {
+          "name": "entity.name.tag.xml.rml"
         }
-      ]
-    },
-    "keywords": {
+      },
+      "end": "(\\?>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.xml.rml"
+        }
+      },
       "patterns": [
         {
-          "name": "keyword.control.rml",
-          "match": "\\b(report|section|table|chart|if|else|for|while|def)\\b"
+          "include": "#attributes"
         }
       ]
     },
-    "strings": {
+    "doctype": {
+      "name": "meta.tag.sgml.doctype.rml",
+      "begin": "(<!)\\s*(DOCTYPE)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.xml.rml"
+        },
+        "2": {
+          "name": "keyword.other.doctype.xml.rml"
+        }
+      },
+      "end": "(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.xml.rml"
+        }
+      },
       "patterns": [
         {
           "name": "string.quoted.double.rml",
           "begin": "\"",
-          "end": "\"",
+          "end": "\""
+        },
+        {
+          "name": "keyword.other.rml",
+          "match": "\\b(SYSTEM|PUBLIC)\\b"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.xml.rml",
+          "begin": "<!--",
+          "end": "-->",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.xml.rml"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.xml.rml"
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        {
+          "name": "meta.tag.rml",
+          "begin": "(</?)(document|template|pageTemplate|stylesheet|story|frame|para|blockTable|tr|td|th|pageGraphics|place|fill|setFont|drawString|paraStyle|blockTableStyle|tableStyle|spacer|image|illustration|barCode|circle|rect|line|keepInFrame|condPageBreak|nextFrame|nextPage|setNextTemplate|docinit|registerFont|registerTTFont|registerCIDFont|alias|evalString|getName|getStory|increment|decrement)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.xml.rml"
+            },
+            "2": {
+              "name": "entity.name.tag.rml"
+            }
+          },
+          "end": "(/?>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.xml.rml"
+            }
+          },
           "patterns": [
             {
-              "name": "constant.character.escape.rml",
-              "match": "\\\\."
+              "include": "#attributes"
+            }
+          ]
+        },
+        {
+          "name": "meta.tag.inline.rml",
+          "begin": "(</?)(b|i|u|sup|sub|font|br|span)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.xml.rml"
+            },
+            "2": {
+              "name": "entity.name.tag.inline.rml"
+            }
+          },
+          "end": "(/?>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.xml.rml"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#attributes"
+            }
+          ]
+        },
+        {
+          "name": "meta.tag.other.rml",
+          "begin": "(</?)(\\w+)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.xml.rml"
+            },
+            "2": {
+              "name": "entity.name.tag.xml.rml"
+            }
+          },
+          "end": "(/?>)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.xml.rml"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#attributes"
             }
           ]
         }
       ]
     },
-    "numbers": {
+    "attributes": {
+      "patterns": [
+        {
+          "name": "meta.attribute.rml",
+          "begin": "\\b([a-zA-Z_][a-zA-Z0-9_-]*)\\s*(=)\\s*",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.attribute-name.rml"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.rml"
+            }
+          },
+          "end": "(?<=\\S)(?=\\s|>|/>)",
+          "patterns": [
+            {
+              "include": "#attribute-values"
+            }
+          ]
+        }
+      ]
+    },
+    "attribute-values": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.rml",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.rml"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.rml"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#attribute-value-content"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.rml",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.rml"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.rml"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#attribute-value-content"
+            }
+          ]
+        },
+        {
+          "name": "string.unquoted.rml",
+          "match": "[^\\s>]+",
+          "patterns": [
+            {
+              "include": "#attribute-value-content"
+            }
+          ]
+        }
+      ]
+    },
+    "attribute-value-content": {
       "patterns": [
         {
           "name": "constant.numeric.rml",
-          "match": "\\b\\d+(\\.\\d+)?\\b"
+          "match": "\\b\\d+(\\.\\d+)?(px|pt|cm|mm|in|%)?\\b"
+        },
+        {
+          "name": "constant.language.color.rml",
+          "match": "\\b(red|green|blue|yellow|black|white|gray|grey|orange|purple|pink|brown|cyan|magenta|lime|navy|maroon|olive|teal|silver|aqua|fuchsia)\\b"
+        },
+        {
+          "name": "constant.other.color.hex.rml",
+          "match": "#[0-9a-fA-F]{3,6}\\b"
+        },
+        {
+          "name": "constant.language.font.rml",
+          "match": "\\b(Helvetica|Times-Roman|Times-Bold|Times-Italic|Times-BoldItalic|Courier|Courier-Bold|Courier-Oblique|Courier-BoldOblique|Symbol|ZapfDingbats|HeiseiMin-W3|HeiseiKakuGo-W5|STSong-Light|MSung-Light|HYGoThic-Medium)\\b"
+        },
+        {
+          "name": "constant.language.alignment.rml",
+          "match": "\\b(left|right|center|centre|justify|decimal)\\b"
+        },
+        {
+          "name": "constant.language.boolean.rml",
+          "match": "\\b(true|false|yes|no|on|off|1|0)\\b"
+        },
+        {
+          "include": "#entity-references"
+        }
+      ]
+    },
+    "entity-references": {
+      "patterns": [
+        {
+          "name": "constant.character.entity.xml.rml",
+          "match": "&(amp|lt|gt|quot|apos|#[0-9]+|#x[0-9a-fA-F]+);",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.constant.xml.rml"
+            }
+          }
         }
       ]
     }
