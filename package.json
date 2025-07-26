@@ -17,9 +17,6 @@
     "markup",
     "language"
   ],
-  "activationEvents": [
-    "onLanguage:rml"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "languages": [
@@ -47,36 +44,21 @@
         "command": "rml.exportToPdf",
         "title": "Export to PDF",
         "category": "RML"
-      },
-      {
-        "command": "rml.previewPdf",
-        "title": "Preview as PDF",
-        "category": "RML"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "rml.previewPdf",
-          "when": "resourceExtname == .rml",
-          "group": "navigation@1"
-        },
-        {
           "command": "rml.exportToPdf",
           "when": "resourceExtname == .rml",
-          "group": "navigation@2"
+          "group": "navigation"
         }
       ],
       "editor/context": [
         {
-          "command": "rml.previewPdf",
-          "when": "resourceExtname == .rml",
-          "group": "navigation@1"
-        },
-        {
           "command": "rml.exportToPdf",
           "when": "resourceExtname == .rml",
-          "group": "navigation@2"
+          "group": "navigation"
         }
       ]
     }
