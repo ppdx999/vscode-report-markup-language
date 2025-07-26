@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="japanese-test.pdf">
+
+<template>
+    <pageTemplate id="main">
+        <frame id="main" x1="72" y1="72" width="451" height="698"/>
+    </pageTemplate>
+</template>
+
+<stylesheet>
+    <paraStyle name="title" 
+               fontName="HeiseiMin-W3" 
+               fontSize="18" 
+               alignment="center"/>
+    
+    <paraStyle name="body" 
+               fontName="HeiseiMin-W3" 
+               fontSize="12" 
+               alignment="left"/>
+    
+    <paraStyle name="gothic" 
+               fontName="HeiseiKakuGo-W5" 
+               fontSize="12" 
+               alignment="left"/>
+</stylesheet>
+
+<story>
+    <para style="title">日本語テスト文書</para>
+    <spacer length="20"/>
+    
+    <para style="body">
+        これは日本語のテスト文書です。明朝体（HeiseiMin-W3）で表示されています。
+    </para>
+    <spacer length="12"/>
+    
+    <para style="gothic">
+        こちらはゴシック体（HeiseiKakuGo-W5）で表示されています。
+    </para>
+    <spacer length="12"/>
+    
+    <para style="body">
+        漢字、ひらがな、カタカナの混在：
+        田中太郎　東京都渋谷区　コンピュータ　プログラム
+    </para>
+    <spacer length="12"/>
+    
+    <para style="body">
+        数字と記号：　１２３４５６７８９０
+        ！？「」（）【】〜・…
+    </para>
+</story>
+
+</document>
