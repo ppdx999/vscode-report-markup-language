@@ -10,11 +10,21 @@ Rich RML (Report Markup Language) support for Visual Studio Code with automatic 
 - 🔧 **Language Configuration**: Auto-closing brackets, comments, and intelligent pairing
 - 📁 **Context Menus**: Right-click RML files for quick PDF export
 
+## PDF Preview
+
+This extension focuses purely on RML to PDF conversion. For viewing PDFs, we recommend installing a dedicated PDF viewer extension:
+
+**Recommended: [PDF Viewer (vscode-pdf)](https://marketplace.visualstudio.com/items?itemName=tomoki1207.pdf)**
+- Excellent Japanese/CJK font support
+- Clean, fast PDF viewing in VSCode
+- Perfect integration with exported RML files
+
 ## Installation
 
 1. Install the extension from the VSCode marketplace
-2. Ensure Python 3 is installed and available in your PATH
-3. Install the required Python package: `pip install trml2pdf`
+2. **Recommended**: Install [PDF Viewer (vscode-pdf)](https://marketplace.visualstudio.com/items?itemName=tomoki1207.pdf) for viewing PDFs
+3. Ensure Python 3 is installed and available in your PATH
+4. Install the required Python package: `pip install trml2pdf`
 
 ## Usage
 
@@ -24,6 +34,7 @@ Rich RML (Report Markup Language) support for Visual Studio Code with automatic 
 2. Write your RML content with syntax highlighting
 3. Right-click the file and select **"Export to PDF"**
 4. PDF is generated in the same directory as your RML file
+5. **Optional**: Open the generated PDF with vscode-pdf extension for preview
 
 ### Example RML File
 
@@ -97,27 +108,19 @@ Simply specify the font name in your stylesheet - no `<docinit>` tags required:
 
 ## WSL2 Development
 
-The extension works seamlessly in WSL2 environments with automatic Windows integration.
+The extension works perfectly in WSL2 environments. Combined with vscode-pdf extension, you get seamless PDF viewing.
 
-### Features
+### Recommended Setup
 
-- 🔍 **Auto-Detection**: Automatically detects WSL2 environment
-- 🔄 **Path Conversion**: Handles WSL2 ↔ Windows path conversion automatically
-- 🖥️ **Windows Integration**: PDFs open in your default Windows PDF viewer
-- 🌏 **Perfect Font Rendering**: Windows handles Japanese fonts natively
+1. Install this RML extension in WSL2 VSCode
+2. Install vscode-pdf extension for PDF viewing
+3. Export RML files and view them directly in VSCode
 
-### Requirements
+### Benefits
 
-- WSL2 environment
-- Windows 10/11 with default PDF viewer
-- `wslpath` command (included in WSL2)
-
-### Workflow
-
-1. Edit RML files in WSL2 VSCode
-2. Right-click → **"Export to PDF"**
-3. PDF opens automatically in Windows default viewer
-4. Japanese text renders perfectly!
+- 🌏 **Perfect Font Rendering**: vscode-pdf handles Japanese fonts excellently
+- 🔄 **No Path Issues**: Everything stays within VSCode/WSL2
+- 🖥️ **Unified Workflow**: Edit RML → Export PDF → View PDF all in one place
 
 ## Sample Files
 
@@ -157,6 +160,8 @@ Available in:
 - Right-click context menu on `.rml` files
 - Editor context menu when viewing RML files
 
+After export, you can open the generated PDF with the vscode-pdf extension for immediate preview.
+
 ## Configuration
 
 The extension works out of the box with no configuration required. It automatically:
@@ -183,10 +188,9 @@ The extension works out of the box with no configuration required. It automatica
 - Ensure your RML file is saved with UTF-8 encoding
 - Check that your system supports the specified CID fonts
 
-**WSL2 PDF Opening Issues**
-- Verify WSL2 is properly configured
-- Ensure Windows has a default PDF viewer
-- Check that `wslpath` command is available
+**PDF Viewing Issues**
+- Install the recommended vscode-pdf extension for best PDF viewing experience
+- Ensure your PDF viewer supports Japanese/CJK fonts if needed
 
 ### Debug Information
 
