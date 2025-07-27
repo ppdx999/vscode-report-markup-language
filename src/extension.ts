@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { exec } from 'child_process';
+import { RmlCompletionProvider } from './completion';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('RML extension is now active');
@@ -21,7 +22,14 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    context.subscriptions.push(exportToPdfCommand);
+    // Register completion provider
+    const completionProvider = vscode.languages.registerCompletionItemProvider(
+        'rml',
+        new RmlCompletionProvider(),
+        '<', ' ', '=', '"', "'"
+    );
+
+    context.subscriptions.push(exportToPdfCommand, completionProvider);
 }
 
 function getRmlFile(uri?: vscode.Uri): vscode.Uri | null {
