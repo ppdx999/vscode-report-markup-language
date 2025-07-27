@@ -1,10 +1,11 @@
 # VSCode RML Extension
 
-Rich RML (Report Markup Language) support for Visual Studio Code with automatic Japanese font handling and PDF export capabilities.
+Professional RML (Report Markup Language) development environment for Visual Studio Code with intelligent code completion, comprehensive syntax highlighting, automatic Japanese font handling, and seamless PDF export capabilities.
 
 ## Features
 
-- 🎨 **Syntax Highlighting**: Full RML syntax highlighting with keywords, strings, and comments
+- 🎨 **Rich Syntax Highlighting**: Comprehensive XML-aware syntax highlighting with RML-specific tags, attributes, and values
+- 💡 **Intelligent Code Completion**: Context-aware completions for tags, attributes, and values with rich snippets
 - 📄 **PDF Export**: Convert RML files to PDF with a simple right-click
 - 🌏 **Japanese Font Support**: Automatic CJK font registration (no setup required)
 - 🔧 **Language Configuration**: Auto-closing brackets, comments, and intelligent pairing
@@ -31,10 +32,11 @@ This extension focuses purely on RML to PDF conversion. For viewing PDFs, we rec
 ### Basic Workflow
 
 1. Create or open an `.rml` file
-2. Write your RML content with syntax highlighting
-3. Right-click the file and select **"Export to PDF"**
-4. PDF is generated in the same directory as your RML file
-5. **Optional**: Open the generated PDF with vscode-pdf extension for preview
+2. Write your RML content with rich syntax highlighting and intelligent code completion
+3. Use `Ctrl+Space` for context-aware completions (tags, attributes, values)
+4. Right-click the file and select **"Export to PDF"**
+5. PDF is generated in the same directory as your RML file
+6. **Optional**: Open the generated PDF with vscode-pdf extension for preview
 
 ### Example RML File
 
@@ -62,6 +64,48 @@ This extension focuses purely on RML to PDF conversion. For viewing PDFs, we rec
 
 </document>
 ```
+
+## Code Completion
+
+The extension provides intelligent, context-aware code completion to speed up RML development.
+
+### Features
+
+- 🏷️ **Tag Completions**: Type `<` to get suggestions for 40+ RML elements with smart snippets
+- 🔧 **Attribute Completions**: Type space after a tag to see relevant attributes
+- 🎨 **Value Completions**: Type `"` or `'` to get predefined values (fonts, colors, alignments)
+- 📖 **Rich Documentation**: Hover over completions to see detailed descriptions
+
+### Examples
+
+**Tag Completion:**
+```xml
+<doc → suggests "document" with snippet:
+<document filename="$1">
+    $0
+</document>
+```
+
+**Attribute Completion:**
+```xml
+<para → suggests: style, fontName, fontSize, textColor, alignment
+```
+
+**Value Completion:**
+```xml
+fontName=" → suggests: Helvetica, Times-Roman, HeiseiMin-W3, HeiseiKakuGo-W5
+alignment=" → suggests: left, right, center, justify
+```
+
+### Supported Elements
+
+- **Document Structure**: `document`, `template`, `pageTemplate`, `stylesheet`, `story`
+- **Layout Elements**: `frame`, `pageGraphics`, `place`
+- **Content Elements**: `para`, `spacer`, `image`, `blockTable`, `tr`, `td`
+- **Style Elements**: `paraStyle`, `blockTableStyle`
+- **Graphics**: `fill`, `setFont`, `drawString`, `circle`, `rect`, `line`
+- **Font Registration**: `docinit`, `registerFont`, `registerTTFont`, `registerCIDFont`
+- **Inline Formatting**: `b`, `i`, `u`, `sup`, `sub`, `font`, `span`, `br`
 
 ## Japanese Font Support
 
@@ -246,11 +290,13 @@ This extension is released under the MIT License.
 
 ### Latest Changes
 
-- ✅ Simplified to export-only functionality for better reliability
-- ✅ Automatic CJK font registration without manual configuration
-- ✅ Enhanced WSL2 support with seamless Windows integration
-- ✅ Comprehensive syntax highlighting for RML files
-- ✅ Right-click context menu integration
+- ✅ **Intelligent Code Completion**: Context-aware completions for 40+ RML elements with rich snippets
+- ✅ **Enhanced Syntax Highlighting**: Comprehensive XML-aware highlighting with RML-specific tags and attributes
+- ✅ **Smart Value Recognition**: Auto-completion for fonts, colors, alignments, and dimensions
+- ✅ **Professional IDE Experience**: Rich documentation and type information for all completions
+- ✅ **Simplified PDF Export**: Focused on reliable RML to PDF conversion
+- ✅ **Automatic CJK Font Registration**: Japanese font support without manual configuration
+- ✅ **vscode-pdf Integration**: Seamless PDF viewing with recommended extension
 
 ---
 
